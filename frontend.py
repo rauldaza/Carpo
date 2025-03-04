@@ -514,7 +514,11 @@ def save_results_func():
     
     for i, (image, path) in enumerate(zip(images, total_image_paths)):
         # Create output filename
-        name = re.split(r"[/.]", path)[-2]
+        # Obtén el nombre base del archivo (p.ej. "1386.png")
+        base_filename = os.path.basename(path)
+        # Extrae solo el nombre sin extensión (p.ej. "1386")
+        name = os.path.splitext(base_filename)[0]
+        # Construye la ruta completa de salida
         output_dicom = os.path.join(folder_name, f'{name}.dcm')
 
         # Initialize DICOM dataset
